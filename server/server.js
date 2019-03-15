@@ -35,6 +35,11 @@ app.get('/login', (req, res) => {
   res.sendFile(path.resolve('./index.html'));
 });
 
+app.get('/mysnippets', (req,res)=>{
+  console.log('this is a good sign');
+  res.sendFile(path.resolve('./index.html'))
+})
+
 app.get('/build/bundle.js', (req, res) => {
   res.sendFile(path.resolve('./build/bundle.js'));
 });
@@ -46,6 +51,8 @@ app.get('/api/user', controller.getAccountInfo, snippetController.getSnippetsByU
   };
   res.json(userDataWithSnippets);
 });
+
+app.get('/api/getalltags', snippetController.getAllTags);
 
 app.get('/gettags', snippetController.getAllUserTags);
 

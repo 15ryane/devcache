@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 // Import Children
-
 import AddSnip from '../components/addSnip.jsx';
 import SideBar from '../components/sideBar.jsx';
+import MySnippettes from '../components/MySnippettes.jsx';
 
 const mapStateToProps = (store) => ({
   userInfo: store.user.userInfo,
@@ -21,10 +21,10 @@ const mapStateToProps = (store) => ({
   userSnippets: store.snip.userSnippets,
 
   validChildren: store.trie.validChildren,
+  tagTrie: store.trie.tagTrie,
 })
 
 const mapDispatchToProps = dispatch => ({
-
   // uiux related
   userLogout: (id) => { dispatch(actions.userLogout(id)) },
   enterSnippet: (event) => { dispatch(actions.enterSnippet(event.target.value)) },
@@ -62,25 +62,20 @@ class HomeContainer extends Component {
   render() {
 
     const { validChildren, trieFindChildren, getSnippetsMineOnly, userSnippets, userInfo, snippet, comments, project, tags, search, recievedSnippets, userLogout, enterSnippet, enterComments, enterProject, enterTags, enterSearch, deleteSnippet, getSnippetsByUser, getSnippetsByTag, createSnippet } = this.props;
-
     return (
       <React.Fragment>
         <div className='container'>
           <div className='main'>
             <AddSnip
-
               enterSnippet={enterSnippet}
               enterComments={enterComments}
               enterProject={enterProject}
               enterTags={enterTags}
-              
               snippet={snippet}
               comments={comments}
               project={project}
               tags={tags}
-
               createSnippet={createSnippet}
-
             />
           </div>
           <SideBar
@@ -93,7 +88,15 @@ class HomeContainer extends Component {
             validChildren={validChildren}
           />
         </div>
-
+        <Router>
+          <Switch>
+            <Route path="/mysnippets" render={() => (!isLoggedIn ? <Redirect to="/login" />
+              : <MySnippettes
+                userInfo={userInfo}
+                userSnippets={userSnippets}
+                getSnippetsMineOnly={getSnippetsMineOnly} />)} />
+          </Switch>
+        </Router>
       </React.Fragment>
     );
   };

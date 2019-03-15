@@ -3,7 +3,6 @@ import React from 'react';
 import DisplaySnippets from '../components/displaySnippets.jsx';
 import { Image, Navbar, Form, Dropdown, FormControl, Button, Nav, InputGroup } from 'react-bootstrap';
 
-
 const sideBar = function(props) {
 
   function massOnChange(event) {
