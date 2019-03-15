@@ -20,7 +20,7 @@ const mapStateToProps = (store) => ({
   recievedSnippets: store.snip.recievedSnippets,
   userSnippets: store.snip.userSnippets,
 
-  tagTrie: store.trie.tagTrie,
+  validChildren: store.trie.validChildren,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -61,7 +61,7 @@ class HomeContainer extends Component {
 
   render() {
 
-    const { trieFindChildren, getSnippetsMineOnly, userSnippets, userInfo, snippet, comments, project, tags, search, recievedSnippets, userLogout, enterSnippet, enterComments, enterProject, enterTags, enterSearch, deleteSnippet, getSnippetsByUser, getSnippetsByTag, createSnippet } = this.props;
+    const { validChildren, trieFindChildren, getSnippetsMineOnly, userSnippets, userInfo, snippet, comments, project, tags, search, recievedSnippets, userLogout, enterSnippet, enterComments, enterProject, enterTags, enterSearch, deleteSnippet, getSnippetsByUser, getSnippetsByTag, createSnippet } = this.props;
 
     return (
       <React.Fragment>
@@ -90,6 +90,7 @@ class HomeContainer extends Component {
             userSnippets={userSnippets}
             getSnippetsByUser={getSnippetsByUser}
             trieFindChildren={trieFindChildren}
+            validChildren={validChildren}
           />
         </div>
 

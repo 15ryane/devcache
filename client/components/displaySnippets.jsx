@@ -1,23 +1,35 @@
 import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 
+
 const DisplaySnippets = props => {
   const snippetsArray = props.userSnippets;
-  const snippetsDisplayArray = [];
+  let snippetsDisplayArray = [];
+  let unique = 0;
 
   if(snippetsArray) {
-    for (let i = 0; i < snippetsArray.length; i++) {
-      snippetsDisplayArray.push(
-        <div
-          key={'snippet' + i}
-          id={ snippetsArray[i].id }
-        >
-            <Button variant="outline-dark" className="tagged-snippet text-left" size='sm'>
-              { snippetsArray[i].snippet }
-            </Button>
-        </div>
-      );
-    };
+    if(props.validChildren.length !== 0){
+      props.validChildren.forEach( (tag) => {
+        snippetsArray.forEach( (snippet, i) => {
+          snippet.tags.forEach( (tagObject) => {
+            Object.values(tagObject).forEach( (myTag) => {
+              if(myTag === tag) {
+
+                snippetsDisplayArray.push(
+                  <div>
+                  <Button key={unique++} variant="outline-dark" className="tagged-snippet text-left" size='sm'>
+                    { snippet.snippet }
+                  </Button>
+                  </div>
+                )
+                
+              }
+            })
+          })
+        })
+      })
+    }
+    console.log(snippetsDisplayArray)
   }
   return (
     <div>
