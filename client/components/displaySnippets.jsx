@@ -17,7 +17,7 @@ const DisplaySnippets = props => {
 
                 snippetsDisplayArray.push(
                   <div>
-                  <Button key={unique++} variant="outline-dark" className="tagged-snippet text-left" size='sm'>
+                  <Button bsPrefix="tagged-snippet" key={unique++} variant="outline-dark" className="text-left">
                     { snippet.snippet }
                   </Button>
                   </div>
