@@ -6,7 +6,7 @@ const MySnippettes = props => {
   const snippetsDisplayArray = [];
 
   if(snippetsArray) {
-    for (let i = 0; i < snippetsArray.length; i++) {
+    for (let i = snippetsArray.length-1; i >= 0; i--) {
       snippetsDisplayArray.push(
         <div
           key={'snippet' + i}
@@ -24,7 +24,7 @@ const MySnippettes = props => {
   return (
     <div>
       <h1>
-      hello
+      {snippetsDisplayArray}
       </h1>
     </div>
   );
